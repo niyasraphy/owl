@@ -510,6 +510,7 @@ export const store = reactive({
     this.activeRecorder = false;
     evalFunctionInWindow("toggleEventsRecording", [false, 0]);
     evalFunctionInWindow("toggleTracing", [false]);
+    this.updateIFrameList();
   },
 
   // Triggers manually the rendering of the selected component
