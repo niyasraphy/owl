@@ -46,6 +46,9 @@
       this.appsPatched = false;
       this.destroyPatched = false;
       this.patchAppsSetMethods();
+      setTimeout(() => {
+        this.patchAppMethods();
+      }, 200);
       this.recordEvents = false;
       this.traceRenderings = false;
       this.traceSubscriptions = false;
@@ -243,6 +246,9 @@
       let app = this.apps.values().next().value;
       if (!app) {
         return;
+      }
+      if (app.root) {
+        this.patchDestroyMethod(app.root);
       }
       const originalFlush = app.scheduler.constructor.prototype.flush;
       let inFlush = false;
